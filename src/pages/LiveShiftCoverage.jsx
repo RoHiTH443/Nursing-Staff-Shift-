@@ -28,7 +28,7 @@ export default function LiveShiftCoverage() {
 
   const fetchShiftStatus = () => {
     setLoading(true);
-    fetch('http://localhost:5000/api/nurses/current-shift-status')
+    fetch('https://nursingstaffshiftbackend.vercel.app/api/nurses/current-shift-status')
       .then(res => res.json())
       .then(data => {
         if (data && data.currentShift) {
@@ -49,7 +49,7 @@ export default function LiveShiftCoverage() {
       setAutoScheduling(true);
       setSchedulingNurseId(absentNurse._id);
 
-      const res = await fetch('http://localhost:5000/api/nurses/auto-schedule-substitute', {
+      const res = await fetch('https://nursingstaffshiftbackend.vercel.app/api/nurses/auto-schedule-substitute', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

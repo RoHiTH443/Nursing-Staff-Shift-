@@ -31,7 +31,7 @@ export default function NurseLeaveApply() {
     const fetchNurses = async () => {
       try {
         setLoading(true);
-        const res = await fetch('http://localhost:5000/api/nurses');
+        const res = await fetch('https://nursingstaffshiftbackend.vercel.app/api/nurses');
         const data = await res.json();
         setAllNurses(data);
         if (data.length > 0) {
@@ -53,7 +53,7 @@ export default function NurseLeaveApply() {
   // Fetch leaves for the active nurse
   useEffect(() => {
     if (activeNurse) {
-      fetch(`http://localhost:5000/api/leaves?nurseId=${activeNurse._id}`)
+      fetch(`https://nursingstaffshiftbackend.vercel.app/api/leaves?nurseId=${activeNurse._id}`)
         .then(res => res.json())
         .then(data => setLeaves(data))
         .catch(err => console.error('Error fetching nurse leaves:', err));
@@ -66,7 +66,7 @@ export default function NurseLeaveApply() {
     if (!activeNurse) return;
     try {
       setSubmitting(true);
-      const res = await fetch('http://localhost:5000/api/leaves', {
+      const res = await fetch('https://nursingstaffshiftbackend.vercel.app/api/leaves', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

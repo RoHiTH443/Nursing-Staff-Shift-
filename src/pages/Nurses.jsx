@@ -44,7 +44,7 @@ export default function Nurses() {
     try {
       setLoading(true);
       setError(null);
-      const res = await fetch('http://localhost:5000/api/nurses');
+      const res = await fetch('https://nursingstaffshiftbackend.vercel.app/api/nurses');
       if (!res.ok) throw new Error('Failed to load nurses from server');
       const data = await res.json();
       setNurses(data);
@@ -95,7 +95,7 @@ export default function Nurses() {
     try {
       if (editingNurse) {
         // Edit Existing Nurse
-        const res = await fetch(`http://localhost:5000/api/nurses/${editingNurse._id}`, {
+        const res = await fetch(`https://nursingstaffshiftbackend.vercel.app/api/nurses/${editingNurse._id}`, {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
@@ -105,7 +105,7 @@ export default function Nurses() {
         setNurses(prev => prev.map(n => n._id === updated._id ? updated : n));
       } else {
         // Create New Nurse
-        const res = await fetch('http://localhost:5000/api/nurses', {
+        const res = await fetch('https://nursingstaffshiftbackend.vercel.app/api/nurses', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
@@ -129,7 +129,7 @@ export default function Nurses() {
       return;
     }
     try {
-      const res = await fetch(`http://localhost:5000/api/nurses/${id}`, {
+      const res = await fetch(`https://nursingstaffshiftbackend.vercel.app/api/nurses/${id}`, {
         method: 'DELETE'
       });
       if (!res.ok) throw new Error('Failed to delete nurse');

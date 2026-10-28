@@ -54,7 +54,7 @@ export default function Overtime() {
   const loadRecommendedCandidates = async (dateVal, periodVal) => {
     try {
       setLoadingCandidates(true);
-      const res = await fetch(`http://localhost:5000/api/overtime/recommended-candidates?date=${dateVal}&shiftPeriod=${periodVal}`);
+      const res = await fetch(`https://nursingstaffshiftbackend.vercel.app/api/overtime/recommended-candidates?date=${dateVal}&shiftPeriod=${periodVal}`);
       const data = await res.json();
       if (Array.isArray(data)) {
         setCandidates(data);
@@ -92,7 +92,7 @@ export default function Overtime() {
     }
     try {
       setAllocating(true);
-      const res = await fetch('http://localhost:5000/api/overtime/allocate', {
+      const res = await fetch('https://nursingstaffshiftbackend.vercel.app/api/overtime/allocate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -126,8 +126,8 @@ export default function Overtime() {
       try {
         setLoading(true);
         const [nRes, lRes] = await Promise.all([
-          fetch('http://localhost:5000/api/nurses'),
-          fetch('http://localhost:5000/api/leaves')
+          fetch('https://nursingstaffshiftbackend.vercel.app/api/nurses'),
+          fetch('https://nursingstaffshiftbackend.vercel.app/api/leaves')
         ]);
         const nursesData = await nRes.json();
         const leavesData = await lRes.json();

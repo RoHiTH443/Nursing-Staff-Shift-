@@ -43,8 +43,8 @@ export default function Availability() {
     try {
       setLoading(true);
       const [lRes, nRes] = await Promise.all([
-        fetch('http://localhost:5000/api/leaves'),
-        fetch('http://localhost:5000/api/nurses')
+        fetch('https://nursingstaffshiftbackend.vercel.app/api/leaves'),
+        fetch('https://nursingstaffshiftbackend.vercel.app/api/nurses')
       ]);
       const leavesData = await lRes.json();
       const nursesData = await nRes.json();
@@ -82,7 +82,7 @@ export default function Availability() {
   const handleReviewLeave = async (leave, status) => {
     try {
       setActionLoading(leave._id);
-      const res = await fetch(`http://localhost:5000/api/leaves/${leave._id}/status`, {
+      const res = await fetch(`https://nursingstaffshiftbackend.vercel.app/api/leaves/${leave._id}/status`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
@@ -140,7 +140,7 @@ export default function Availability() {
   const handleConfirmTransfer = async () => {
     if (!transferModal.selectedTransferNurseId || !transferModal.neededDept) return;
     try {
-      const res = await fetch('http://localhost:5000/api/nurses/transfer', {
+      const res = await fetch('https://nursingstaffshiftbackend.vercel.app/api/nurses/transfer', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

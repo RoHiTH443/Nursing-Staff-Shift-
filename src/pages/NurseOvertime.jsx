@@ -33,7 +33,7 @@ export default function NurseOvertime() {
     const fetchNurses = async () => {
       try {
         setLoading(true);
-        const res = await fetch('http://localhost:5000/api/nurses');
+        const res = await fetch('https://nursingstaffshiftbackend.vercel.app/api/nurses');
         const data = await res.json();
         setAllNurses(data);
         if (data.length > 0) {
@@ -56,7 +56,7 @@ export default function NurseOvertime() {
   const fetchAllocations = async (nurseId) => {
     if (!nurseId) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/overtime?nurseId=${nurseId}`);
+      const res = await fetch(`https://nursingstaffshiftbackend.vercel.app/api/overtime?nurseId=${nurseId}`);
       const data = await res.json();
       if (Array.isArray(data)) {
         setAllocations(data);
@@ -76,7 +76,7 @@ export default function NurseOvertime() {
   const handleRespond = async (allocationId, decision) => {
     try {
       setRespondingId(allocationId);
-      const res = await fetch(`http://localhost:5000/api/overtime/${allocationId}/respond`, {
+      const res = await fetch(`https://nursingstaffshiftbackend.vercel.app/api/overtime/${allocationId}/respond`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

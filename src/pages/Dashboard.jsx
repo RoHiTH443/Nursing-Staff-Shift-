@@ -34,7 +34,7 @@ export default function Dashboard() {
   const [upcomingLeaves, setUpcomingLeaves] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/leaves')
+    fetch('https://nursingstaffshiftbackend.vercel.app/api/leaves')
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) {

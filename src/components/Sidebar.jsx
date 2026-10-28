@@ -14,11 +14,11 @@ export default function Sidebar() {
   const isNurse = userRole === 'nurse' || isNurseRoute;
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/leaves?status=Pending')
+    fetch('https://nursingstaffshiftbackend.vercel.app/api/leaves?status=Pending')
       .then(r => r.json())
       .then(data => Array.isArray(data) && setPendingLeaves(data.length))
       .catch(() => {});
-    fetch('http://localhost:5000/api/nurses/current-shift-status')
+    fetch('https://nursingstaffshiftbackend.vercel.app/api/nurses/current-shift-status')
       .then(r => r.json())
       .then(data => data && Array.isArray(data.absentNurses) && setAbsentCount(data.absentNurses.length))
       .catch(() => {});

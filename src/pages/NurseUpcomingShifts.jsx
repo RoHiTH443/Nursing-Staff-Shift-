@@ -28,7 +28,7 @@ export default function NurseUpcomingShifts() {
     const fetchNurses = async () => {
       try {
         setLoading(true);
-        const res = await fetch('http://localhost:5000/api/nurses');
+        const res = await fetch('https://nursingstaffshiftbackend.vercel.app/api/nurses');
         const data = await res.json();
         setAllNurses(data);
         if (data.length > 0) {
@@ -50,7 +50,7 @@ export default function NurseUpcomingShifts() {
   // Fetch shifts for selected nurse
   useEffect(() => {
     if (activeNurse) {
-      fetch(`http://localhost:5000/api/schedules/nurse/${activeNurse._id}/shifts`)
+      fetch(`https://nursingstaffshiftbackend.vercel.app/api/schedules/nurse/${activeNurse._id}/shifts`)
         .then(res => res.json())
         .then(data => {
           if (Array.isArray(data)) {

@@ -20,9 +20,9 @@ export default function TopNavbar() {
         if (!isNurse) {
           // Admin Notifications: Pending Leaves, Overtime status & Sudden Absences
           const [lRes, oRes, sRes] = await Promise.all([
-            fetch('http://localhost:5000/api/leaves?status=Pending'),
-            fetch('http://localhost:5000/api/overtime?status=Pending Nurse Approval'),
-            fetch('http://localhost:5000/api/nurses/current-shift-status')
+            fetch('https://nursingstaffshiftbackend.vercel.app/api/leaves?status=Pending'),
+            fetch('https://nursingstaffshiftbackend.vercel.app/api/overtime?status=Pending Nurse Approval'),
+            fetch('https://nursingstaffshiftbackend.vercel.app/api/nurses/current-shift-status')
           ]);
           const leaves = await lRes.json();
           const overtimes = await oRes.json();
@@ -73,8 +73,8 @@ export default function TopNavbar() {
           // Nurse Notifications: Today's Shift & Overtime Approvals
           const nurseId = localStorage.getItem('selectedNurseId');
           const [sRes, oRes] = await Promise.all([
-            nurseId ? fetch(`http://localhost:5000/api/schedules/nurse/${nurseId}/shifts`) : Promise.resolve({ json: () => [] }),
-            nurseId ? fetch(`http://localhost:5000/api/overtime?nurseId=${nurseId}&status=Pending Nurse Approval`) : Promise.resolve({ json: () => [] })
+            nurseId ? fetch(`https://nursingstaffshiftbackend.vercel.app/api/schedules/nurse/${nurseId}/shifts`) : Promise.resolve({ json: () => [] }),
+            nurseId ? fetch(`https://nursingstaffshiftbackend.vercel.app/api/overtime?nurseId=${nurseId}&status=Pending Nurse Approval`) : Promise.resolve({ json: () => [] })
           ]);
           
           const myShifts = await sRes.json();

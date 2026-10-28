@@ -47,7 +47,7 @@ export default function Scheduler() {
 
   // Load existing schedule and leaves for department on mount / department change
   const loadData = () => {
-    fetch('http://localhost:5000/api/schedules')
+    fetch('https://nursingstaffshiftbackend.vercel.app/api/schedules')
       .then(r => r.json())
       .then(data => {
         if (Array.isArray(data) && data.length > 0) {
@@ -64,7 +64,7 @@ export default function Scheduler() {
       })
       .catch(() => {});
 
-    fetch('http://localhost:5000/api/leaves')
+    fetch('https://nursingstaffshiftbackend.vercel.app/api/leaves')
       .then(r => r.json())
       .then(data => {
         if (Array.isArray(data)) setLeaves(data);
@@ -83,7 +83,7 @@ export default function Scheduler() {
     setIsApproved(false);
     
     try {
-      const response = await fetch('http://localhost:5000/api/schedules/generate', {
+      const response = await fetch('https://nursingstaffshiftbackend.vercel.app/api/schedules/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -115,7 +115,7 @@ export default function Scheduler() {
     if (!schedule || !schedule._id) return;
     setIsApproving(true);
     try {
-      const res = await fetch(`http://localhost:5000/api/schedules/${schedule._id}/approve`, {
+      const res = await fetch(`https://nursingstaffshiftbackend.vercel.app/api/schedules/${schedule._id}/approve`, {
         method: 'PATCH'
       });
       if (!res.ok) {
